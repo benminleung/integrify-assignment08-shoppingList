@@ -1,0 +1,158 @@
+@media screen and (max-width: 360px){
+    body {
+        background-color: lightgray ;
+    }
+}
+
+h4 {
+
+}
+
+body {
+    padding: 0;
+    background-color: #a8d0e6;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+body .background {
+    max-width: 40em;
+    margin: 1em auto;
+    background-color: white;
+    border: 1px solid rgb(233, 217, 190);
+    border-width: 1px 0 0 1px;
+    position: relative;
+    box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 0.1);
+
+}
+
+body .background .headerbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    top: -1em;
+    position: absolute;
+    width: 100%
+}
+
+    .bind {
+        position: relative;
+        width: 1em;
+        height: 3em;
+    }
+    .bind .ring {
+        background: linear-gradient(gray, lightgray, white,  gray, rgb(44, 44, 44));
+        position: absolute;
+        height: 100%;
+        width: .6em;
+        margin: 0 .2em;
+        z-index: 999;
+        border-radius: 2px;
+
+        /* box-shadow: 0 0 1em -1em rgba(0, 0, 0, 0.2); */
+    }
+    .bind .hole {
+        background-color: rgb(35, 35, 35);
+        position: absolute;
+        bottom: -0.3em;
+        height: 1em;
+        width: 1em;
+        z-index: 0;
+        border-radius: 25%;
+    }
+
+
+body .background .wrapper {
+    padding: 1em 0;
+}
+
+body .background .wrapper > * {
+    padding: 0 1em;
+    margin: 1em 0;
+}
+
+.doneList .item{
+    background-color: lightgray;
+}
+
+.doneList .nameQuantUnit .name{
+    text-decoration: line-through;
+}
+
+.doneList .done {
+    background-color: #00AFF2;
+    border-color: #00AFF2
+}
+
+.shopList .done {
+    background-color: white;
+}
+
+.shopList .item {
+    background-color: #00AFF2;
+}
+
+.list {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: auto;
+    grid-row-gap: .4em;
+}
+
+.list .item{
+    display:grid;
+    grid-template-areas: "done nameQuantUnit delete";
+    grid-template-columns: 5em 1fr 5em;
+    grid-column-gap: 1em;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+    padding: .3em;
+    color: white;
+    justify-content: space-between;
+}
+
+.list .item:hover {
+    /* background-color: rgb(196, 196, 177); */
+}
+
+.list .item .done {
+    grid-area: done;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 5px;
+    border: 2px inset;
+}
+.list .item .done:hover {
+    background-color: lightgray;
+}
+
+    .done .tick {
+        border-right: .2em solid white;
+        border-bottom: .2em solid white;
+        transform: rotate(45deg);
+        height: 1em;
+        width: .3em;
+        margin: auto;
+    }
+
+.list .item .nameQuantUnit {
+    grid-area: nameQuantUnit;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 0.5em;
+    justify-content: center;
+}
+    .name {
+        
+    }
+
+.list .item .delete{
+    grid-area: delete;
+    justify-self: end;
+}
+
+.doneListButton {
+    
+}
