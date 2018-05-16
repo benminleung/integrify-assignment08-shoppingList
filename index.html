@@ -3,7 +3,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="myscript.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <title></title>
@@ -12,7 +11,7 @@
     
     <div class="background">
         <div class="headerbar">
-            <script>printRings(10);</script>
+            <script></script>
         </div>
         <div class="wrapper">
             <!--form-->        
@@ -20,13 +19,13 @@
                 <h1>The Invisible Hand</h1>
                 <input type="text" placeholder="Item" id="itemInput">
                 <input type="number" placeholder="Quantity" id="quantInput">
-                <button onclick="newItem()">I dare you to click me</button>
+                <button onclick="newItem()">Add</button>
             </section>
             <!--shopping list-->
             <section>
                 <div class="list shopList " id="shopListId">
                     <script>
-                        printListMenu('shop');
+                        // printListMenu('shop');
                     </script>
                 </div>
             </section>
@@ -36,12 +35,15 @@
             <h4 class="doneListButton" onclick="hideDoneList()">Done List</h4>
                 <div class="list doneList" id="doneListId">
                     <script>
-                        printListMenu('done');
+                        // printListMenu('done');
                     </script>
                 </div> 
             </section>
             
         </div>
     </div>
+    <p>&copy Copyright 2018. All rights reserved</p>
+
+    <script type="text/javascript" src="myscript.js"></script>
 </body>
 </html>

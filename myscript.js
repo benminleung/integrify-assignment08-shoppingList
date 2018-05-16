@@ -15,6 +15,16 @@ const shopListArray = [
     new ItemObj('Orange', 3),
     new ItemObj('PineApple', 4, true),
     new ItemObj('PineOrange', 5, true),
+    new ItemObj('Blueberries', 4, true),
+    new ItemObj('Apple', 2),
+    new ItemObj('Orange', 3),
+    new ItemObj('PineApple', 4, true),
+    new ItemObj('PineOrange', 5, true),
+    new ItemObj('Blueberries', 4, true),
+    new ItemObj('Apple', 2),
+    new ItemObj('Orange', 3),
+    new ItemObj('PineApple', 4, true),
+    new ItemObj('PineOrange', 5, true),
     new ItemObj('Blueberries', 4, true)
 ];
 
@@ -48,32 +58,27 @@ function printList (key, propertyValue, targetId) {
 
 // Main HTML builder of the item blocks
 function itemHtmlBuilder(item) {
-    let itemHtml = "";
-
-    //adds ACTIVE class to if item.done is true
-    function isDone (bool) {
-        return bool ? 'nonActive' : 'active';
-    }
-
-    itemHtml = `
+    return `
         <div class="item">
             <label class="done" onclick="doneButton(${item.id})"><div class="tick"></div></label>
             <div class="nameQuantUnit">
                 <div class="name">${item.name}</div>
                 <div class="quant"> x ${item.quant}</div>
             </div>
-            <label class="delete" onclick="deleteItem(${item.id})"><i class="far fa-trash-alt"></i></label>
+            <label class="delete" onclick="deleteItem(${item.id})"><i class="far fa-trash-alt fa-lg"></i></label>
         </div>
     `;
-    return itemHtml;
 }
 
 // Click button creates new Item and erases input boxes
 function newItem() {
-    if (document.getElementById('itemInput').value && document.getElementById('quantInput').value) {
-        shopListArray.unshift(new ItemObj(cap1stLetter(document.getElementById('itemInput').value), cap1stLetter(document.getElementById('quantInput').value)));
-        document.getElementById('itemInput').value = '';
-        document.getElementById('quantInput').value = '';
+    const itemInput = document.getElementById('itemInput');
+    const quantInput = document.getElementById('quantInput');
+
+    if (itemInput.value && quantInput.value) {
+        shopListArray.unshift(new ItemObj(cap1stLetter(itemInput.value), cap1stLetter(quantInput.value)));
+        itemInput.value = '';
+        quantInput.value = '';
         printListMenu('shop');
     } else {
        alert('Please fill inputs');
@@ -82,7 +87,7 @@ function newItem() {
 
 //Flips 'done' value of an item between true and flase
 function doneButton(id) {
-    let obj = itemById(id);
+    const obj = itemById(id);
     obj.done = !obj.done;
     printListMenu('all');
 }
@@ -103,10 +108,10 @@ function cap1stLetter(string) {
 }
 
 function hideDoneList (){
-    document.getElementById('doneListId').style.display == "none" ?
-    document.getElementById('doneListId').style.display = "grid" :
-    document.getElementById('doneListId').style.display = "none";
-    console.log(document.getElementById('doneListId').style.display);
+    const style = document.getElementById('doneListId').style;
+    style.display === "none"
+        ? style.display = "grid"
+        : style.display = "none";
 }
 
 function printRings (number) {
@@ -120,3 +125,7 @@ function printRings (number) {
             </div>`;
     }
 }
+
+printRings(10);
+printListMenu('shop');
+printListMenu('done');

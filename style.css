@@ -10,10 +10,10 @@ h4 {
 
 body {
     padding: 0;
-    background-color: #a8d0e6;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    background-color: #a8d0e6;
 }
 
 body .background {
@@ -64,7 +64,7 @@ body .background .headerbar{
 
 
 body .background .wrapper {
-    padding: 1em 0;
+    padding: 2em 0;
 }
 
 body .background .wrapper > * {
@@ -103,7 +103,7 @@ body .background .wrapper > * {
 .list .item{
     display:grid;
     grid-template-areas: "done nameQuantUnit delete";
-    grid-template-columns: 5em 1fr 5em;
+    grid-template-columns: 4em 1fr 4em;
     grid-column-gap: 1em;
     align-items: center;
     border-radius: 5px;
@@ -123,6 +123,7 @@ body .background .wrapper > * {
     width: 1.5em;
     border-radius: 5px;
     border: 2px inset;
+    transition: .1s ease-in-out;
 }
 .list .item .done:hover {
     background-color: lightgray;
@@ -151,6 +152,13 @@ body .background .wrapper > * {
 .list .item .delete{
     grid-area: delete;
     justify-self: end;
+    transition: transform .1s ease-in-out;
+}
+
+.list .item .delete:hover{
+    animation-duration: 1s;
+    transform: rotate(-25deg);
+    color: orange;
 }
 
 .doneListButton {
