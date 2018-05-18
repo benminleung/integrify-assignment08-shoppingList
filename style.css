@@ -1,3 +1,8 @@
+:root {
+    --primary-color: #00AFF2;
+    --secondary-color: #000;
+}
+
 @media screen and (max-width: 360px){
     body {
         background-color: lightgray ;
@@ -22,15 +27,16 @@ body .background {
     background-color: white;
     border: 1px solid rgb(233, 217, 190);
     border-width: 1px 0 0 1px;
+    border-radius: 1.5em;
     position: relative;
-    box-shadow: 3px 4px 0px 0px rgba(0, 0, 0, 0.1);
-
+    box-shadow: 1em 1em 0px 0px rgba(0, 0, 0, 0.1);
+    
 }
 
 body .background .headerbar{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     top: -1em;
     position: absolute;
     width: 100%
@@ -49,8 +55,7 @@ body .background .headerbar{
         margin: 0 .2em;
         z-index: 999;
         border-radius: 2px;
-
-        /* box-shadow: 0 0 1em -1em rgba(0, 0, 0, 0.2); */
+        box-shadow: 0 0 1em -1em rgba(0, 0, 0, 0.2);
     }
     .bind .hole {
         background-color: rgb(35, 35, 35);
@@ -68,7 +73,7 @@ body .background .wrapper {
 }
 
 body .background .wrapper > * {
-    padding: 0 1em;
+    padding: 0 5%;
     margin: 1em 0;
 }
 
@@ -81,8 +86,12 @@ body .background .wrapper > * {
 }
 
 .doneList .done {
-    background-color: #00AFF2;
-    border-color: #00AFF2
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.doneList .item {
+    border-color: var(--primary-color);
 }
 
 .shopList .done {
@@ -90,25 +99,26 @@ body .background .wrapper > * {
 }
 
 .shopList .item {
-    background-color: #00AFF2;
+    background-color: var(--primary-color);
 }
 
 .list {
     display: grid;
     grid-auto-rows: auto;
     grid-template-columns: auto;
-    grid-row-gap: .4em;
+    grid-row-gap: 1px;
 }
 
 .list .item{
     display:grid;
     grid-template-areas: "done nameQuantUnit delete";
-    grid-template-columns: 4em 1fr 4em;
+    grid-template-columns: auto 1fr auto;
     grid-column-gap: 1em;
     align-items: center;
     border-radius: 5px;
-    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
-    padding: .3em;
+    /* border-bottom: 1px solid; */
+    /* box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2); */
+    padding: .5em;
     color: white;
     justify-content: space-between;
 }
@@ -119,8 +129,8 @@ body .background .wrapper > * {
 
 .list .item .done {
     grid-area: done;
-    height: 1.5em;
-    width: 1.5em;
+    height: 2em;
+    width: 2em;
     border-radius: 5px;
     border: 2px inset;
     transition: .1s ease-in-out;
@@ -135,7 +145,7 @@ body .background .wrapper > * {
         transform: rotate(45deg);
         height: 1em;
         width: .3em;
-        margin: auto;
+        margin: .25em auto;
     }
 
 .list .item .nameQuantUnit {
@@ -151,8 +161,9 @@ body .background .wrapper > * {
 
 .list .item .delete{
     grid-area: delete;
-    justify-self: end;
     transition: transform .1s ease-in-out;
+    height: 100%;
+    vertical-align: middle;
 }
 
 .list .item .delete:hover{
@@ -161,6 +172,13 @@ body .background .wrapper > * {
     color: orange;
 }
 
+.list .item .delete i {
+    line-height: inherit;
+    height:100%;
+    margin: 30% 1vw;
+}
+
 .doneListButton {
     
 }
+

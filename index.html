@@ -11,35 +11,32 @@
     
     <div class="background">
         <div class="headerbar">
-            <script></script>
         </div>
         <div class="wrapper">
             <!--form-->        
             <section class="form">
                 <h1>The Invisible Hand</h1>
                 <input type="text" placeholder="Item" id="itemInput">
-                <input type="number" placeholder="Quantity" id="quantInput">
+                <input type="text" placeholder="Quantity" id="quantInput" pattern="/\d*">
                 <button onclick="newItem()">Add</button>
             </section>
             <!--shopping list-->
             <section>
                 <div class="list shopList " id="shopListId">
-                    <script>
-                        // printListMenu('shop');
-                    </script>
                 </div>
             </section>
 
             <!--done list-->
             <section>
             <h4 class="doneListButton" onclick="hideDoneList()">Done List</h4>
-                <div class="list doneList" id="doneListId">
-                    <script>
-                        // printListMenu('done');
-                    </script>
-                </div> 
+            <div class="list doneList" id="doneListId"></div> 
             </section>
             
+            <section>
+                <h4>TEST SECTION</h4>
+                <div class="list doneList" id="testListId"></div>
+            </section>
+
         </div>
     </div>
     <p>&copy Copyright 2018. All rights reserved</p>
