@@ -99,7 +99,7 @@ body .background .wrapper > * {
 }
 
 .shopList .item {
-    background-color: var(--primary-color);
+    background: linear-gradient(to right, var(--primary-color), var(--primary-color));
 }
 
 .list {
@@ -111,8 +111,8 @@ body .background .wrapper > * {
 
 .list .item{
     display:grid;
-    grid-template-areas: "done nameQuantUnit delete";
-    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "done nameQuantUnit edit delete";
+    grid-template-columns: auto 1fr auto auto;
     grid-column-gap: 1em;
     align-items: center;
     border-radius: 10px;
@@ -122,12 +122,21 @@ body .background .wrapper > * {
     color: white;
     justify-content: space-between;
     transition: .2s ease-in-out;
+    /* transition: background-color 1000ms linear; */
 }
 
 .list .item:hover {
     /* background-color: rgb(196, 196, 177); */
-    box-shadow: 3px 3px 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 3px 2px 3px rgba(0, 0, 0, 0.1);
     z-index: 1;
+}
+
+.list .deleteHover {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-color), var(--primary-color), rgb(255, 62, 62));
+}
+
+.list .editHover {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-color), var(--primary-color), orange);    
 }
 
 .list .item .done {
@@ -158,27 +167,38 @@ body .background .wrapper > * {
     grid-gap: 0.5em;
     justify-content: center;
 }
-    .name {
-        
+    
+    .name,
+    .quant {
+        background: inherit;
+        border: inherit;
+        color: inherit;
+        font: inherit;
+        text-align: center;
+        width: 100%;
     }
+
+.list .item .edit {
+    grid-area: edit;
+    transition: .1s ease-in-out;
+}
 
 .list .item .delete{
     grid-area: delete;
     transition: transform .1s ease-in-out;
-    height: 100%;
     vertical-align: middle;
 }
 
-.list .item .delete:hover{
-    animation-duration: 1s;
+.list .item .delete:hover,
+.list .item .edit:hover
+{
     transform: rotate(-25deg);
-    color: orange;
 }
 
 .list .item .delete i {
     line-height: inherit;
     height:100%;
-    margin: 30% 1vw;
+    margin:auto;
 }
 
 .doneListButton {

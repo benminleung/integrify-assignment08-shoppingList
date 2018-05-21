@@ -1,23 +1,26 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <title></title>
 </head>
+
 <body>
-    
+
     <div class="background">
         <div class="headerbar">
         </div>
         <div class="wrapper">
-            <!--form-->        
+            <!--form-->
             <section class="form">
                 <h1>The Invisible Hand</h1>
                 <input type="text" placeholder="Item" id="itemInput">
-                <input type="text" placeholder="Quantity" id="quantInput" pattern="/\d*">
+                <input type="number" placeholder="Quantity" id="quantInput" pattern="/\d*" min=0>
                 <button onclick="newItem()">Add</button>
             </section>
             <!--shopping list-->
@@ -28,10 +31,10 @@
 
             <!--done list-->
             <section>
-            <h4 class="doneListButton" onclick="hideDoneList()">Done List</h4>
-            <div class="list doneList" id="doneListId"></div> 
+                <h4 class="doneListButton" onclick="hideDoneList()">Done List</h4>
+                <div class="list doneList" id="doneListId"></div>
             </section>
-            
+
             <section>
                 <h4>TEST SECTION</h4>
                 <div class="list doneList" id="testListId"></div>
@@ -43,4 +46,5 @@
 
     <script type="text/javascript" src="myscript.js"></script>
 </body>
+
 </html>

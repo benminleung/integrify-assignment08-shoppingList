@@ -51,6 +51,9 @@ function itemElementCreater(item) {
     itemDiv.className = 'item';
     itemDiv.id = item.id;
     itemDiv.addEventListener('click', e => eventHandler(e, itemDiv.id));
+    itemDiv.addEventListener('mouseover', e => mouseOverHandler(e, itemDiv.id))
+    itemDiv.addEventListener('mouseout', e => mouseOutHandler(e, itemDiv.id))
+    
         //creates done <label>
         const done = document.createElement('label');
         done.className = 'done';
@@ -66,33 +69,53 @@ function itemElementCreater(item) {
         nameQuantUnit.className = 'nameQuantUnit';
         
             //creates name <div>
-            const name = document.createElement('div');
+            const name = document.createElement('input');
             name.className = 'name';
-            var nameText = document.createTextNode(`${item.name}`)
-            name.appendChild(nameText);
+            name.type = 'text';            
+            name.id = `${item.id}name`;
+            name.value = `${item.name}`;
+            name.readOnly = true;
+            //OLD way of creating name with DIV tag.
+            // const name = document.createElement('div');
+            // name.className = 'name';
+            // name.id = `${item.id}name`;
+            // var nameText = document.createTextNode(`${item.name}`)
+            // name.appendChild(nameText);
 
             //creates quant <div>
-            const quant = document.createElement('div');
+            const quant = document.createElement('input');
             quant.className = 'quant';
-            var quantNum = document.createTextNode(`${item.quant}`)
-            quant.appendChild(quantNum);
+            quant.type = 'number';
+            quant.min = 0;
+            quant.id = `${item.id}quant`;
+            quant.value = `${item.quant}`;
+            quant.readOnly = true;
+            // const quant = document.createElement('div');
+            // quant.className = 'quant';
+            // quant.id = `${item.id}quant`;
+            // var quantNum = document.createTextNode(`${item.quant}`)
+            // quant.appendChild(quantNum);
 
         nameQuantUnit.appendChild(name);
         nameQuantUnit.appendChild(quant);
 
+        //creates edit <i>
+        const edit = document.createElement('i');
+        edit.className = 'edit fas fa-pencil-alt fa-2x';
+
         //creates delete <label>
         const remove = document.createElement('label');
         remove.className = 'delete';
-        remove.onclick = `deleteItem(${item.id})`;
 
             //creates trash icon <i>
             const trash = document.createElement('i');
-            trash.className = 'deleteIcon far fa-trash-alt fa-lg';
+            trash.className = 'deleteIcon far fa-trash-alt fa-2x';
         
         remove.appendChild(trash);
 
     itemDiv.appendChild(done);    
     itemDiv.appendChild(nameQuantUnit);
+    itemDiv.appendChild(edit);
     itemDiv.appendChild(remove);
 
     return itemDiv;
@@ -102,7 +125,7 @@ function itemElementCreater(item) {
 
 function eventHandler (e, id) {
     const target = e.target;
-    // console.log(e.path);
+    // console.log(e.target);
 
     switch(target.classList[0]) {
         // Done button
@@ -117,9 +140,9 @@ function eventHandler (e, id) {
             deleteItem(id);
             break;
         
-        // Edit name
-        case 'name':
-           
+        // Edit button
+        case 'edit':
+           editButton(id);
         break;
 
         // New Item Submission
@@ -127,12 +150,55 @@ function eventHandler (e, id) {
 
 }
 
-function newItem() {
-    const itemInput = document.getElementById('itemInput');
-    const quantInput = document.getElementById('quantInput');
+function mouseOverHandler (e, id) {
+    const target = e.target;
+    // console.log(e.target);
 
-    if (itemInput.value && quantInput.value) {
-        const newItem = new ItemObj(cap1stLetter(itemInput.value), cap1stLetter(quantInput.value));
+    switch(target.classList[0]) {
+        // Delete button
+        case 'deleteIcon':
+        case 'delete':
+            // document.getElementById(id).style.background = "linear-gradient(to right, var(--primary-color), var(--primary-color), red)";
+            document.getElementById(id).classList.add('deleteHover');
+            break;
+        
+        // Edit
+        case 'edit':
+            document.getElementById(id).classList.add('editHover');
+        break;
+    }
+}
+
+
+function mouseOutHandler (e, id) {
+    const target = e.target;
+    // console.log(e.target);
+
+    switch(target.classList[0]) {
+        // Delete button
+        case 'deleteIcon':
+        case 'delete':
+            // document.getElementById(id).style.background = '';
+            document.getElementById(id).classList.remove('deleteHover');
+            break;
+        
+        // Edit
+        case 'edit':
+            document.getElementById(id).classList.remove('editHover');
+        break;
+    }
+}
+
+
+function newItem() {
+
+    //Assign item name input
+    const itemInput = document.getElementById('itemInput');
+    //Assign quant input value, and gives 1 if not defined by user.
+    const quantInputValue = document.getElementById('quantInput').value == ""? 1: document.getElementById('quantInput').value;
+
+    if (itemInput.value) {
+        const newItem = new ItemObj(cap1stLetter(itemInput.value), quantInputValue);
         shopListArray.push(newItem);
         itemInput.value = '';
         quantInput.value = '';
@@ -140,6 +206,7 @@ function newItem() {
        alert('Please fill inputs');
     }
 }
+
 
 // Removes item element from original place and adds item element to new place. Toggles item DONE boolean.
 function doneButton(id) {
@@ -158,6 +225,15 @@ function doneButton(id) {
     debugItemsConsLog();
 }
 
+function editButton(id) {
+    const text = document.getElementById(`${itemById(id).id}name`);
+    const number = document.getElementById(`${itemById(id).id}quant`);
+    console.log(text);
+    
+    text.readOnly = !text.readOnly;
+    number.readOnly = !number.readOnly;
+}
+
 //returns the object that has this name
 function itemById (id) {
     return shopListArray.find((item) => item.id === id);
@@ -171,16 +247,19 @@ function deleteItem (id) {
     debugItemsConsLog();
 }
 
+
 function cap1stLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// Hides done list
 function hideDoneList (){
     const style = document.getElementById('doneListId').style;
     style.display === "none"
         ? style.display = "grid"
         : style.display = "none";
 }
+
 
 function printRings (number) {
     for (let i = 0; i < number; i++) {
