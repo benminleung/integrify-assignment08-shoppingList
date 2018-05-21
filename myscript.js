@@ -232,6 +232,8 @@ function editButton(id) {
     
     text.readOnly = !text.readOnly;
     number.readOnly = !number.readOnly;
+
+    text.readOnly || text.focus();
 }
 
 //returns the object that has this name

@@ -178,6 +178,11 @@ body .background .wrapper > * {
         width: 100%;
     }
 
+    .name:focus,
+    .quant:focus {
+        
+    }
+
 .list .item .edit {
     grid-area: edit;
     transition: .1s ease-in-out;
