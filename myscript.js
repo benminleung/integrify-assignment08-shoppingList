@@ -102,6 +102,7 @@ function itemElementCreater(item) {
         //creates edit <i>
         const edit = document.createElement('i');
         edit.className = 'edit fas fa-pencil-alt fa-2x';
+        edit.id = `${item.id}edit`;
 
         //creates delete <label>
         const remove = document.createElement('label');
@@ -164,7 +165,11 @@ function mouseOverHandler (e, id) {
         
         // Edit
         case 'edit':
-            document.getElementById(id).classList.add('editHover');
+            if(document.getElementById(`${id}name`).readOnly == true) {
+                document.getElementById(id).classList.add('editHover');
+            } else {
+                document.getElementById(id).classList.add('editHoverFinish');                
+            }
         break;
     }
 }
@@ -185,6 +190,7 @@ function mouseOutHandler (e, id) {
         // Edit
         case 'edit':
             document.getElementById(id).classList.remove('editHover');
+            document.getElementById(id).classList.remove('editHoverFinish');            
         break;
     }
 }
@@ -229,10 +235,26 @@ function editButton(id) {
     const text = document.getElementById(`${itemById(id).id}name`);
     const number = document.getElementById(`${itemById(id).id}quant`);
     console.log(text);
-    
+
+    // Toggles readOnlyl of the input elements
     text.readOnly = !text.readOnly;
     number.readOnly = !number.readOnly;
 
+    // Adds and removes CSS classes as result of toggling.
+    if (text.readOnly == false) {
+        text.classList.add("editing");
+        number.classList.add("editing");
+        // console.log(`${id}edit`);
+        document.getElementById(`${id}edit`).classList.replace("fa-pencil-alt", "fa-check");
+    } else {
+        text.classList.remove("editing");
+        number.classList.remove("editing");
+        // Assigns new values to the corresponding item (objects) in the array.
+        itemById(id).name = text.value;
+        itemById(id).quant = number.value;
+        document.getElementById(`${id}edit`).classList.replace("fa-check", "fa-pencil-alt");
+    }
+    
     text.readOnly || text.focus();
 }
 

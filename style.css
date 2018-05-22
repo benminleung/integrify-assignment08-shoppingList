@@ -77,6 +77,10 @@ body .background .wrapper > * {
     margin: 1em 0;
 }
 
+.form *{
+    color: var(--primary-color);
+}
+
 .doneList .item{
     background-color: lightgray;
 }
@@ -139,6 +143,10 @@ body .background .wrapper > * {
     background: linear-gradient(to right, var(--primary-color), var(--primary-color), var(--primary-color), orange);    
 }
 
+.list .editHoverFinish {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-color), var(--primary-color), green);        
+}
+
 .list .item .done {
     grid-area: done;
     height: 2em;
@@ -176,11 +184,12 @@ body .background .wrapper > * {
         font: inherit;
         text-align: center;
         width: 100%;
+        outline: none;
     }
 
-    .name:focus,
-    .quant:focus {
-        
+    .editing {
+        color: orange;
+        /* background: black; */
     }
 
 .list .item .edit {
@@ -197,7 +206,7 @@ body .background .wrapper > * {
 .list .item .delete:hover,
 .list .item .edit:hover
 {
-    transform: rotate(-25deg);
+    transform: rotate(10deg);
 }
 
 .list .item .delete i {

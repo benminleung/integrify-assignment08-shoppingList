@@ -17,11 +17,16 @@
         </div>
         <div class="wrapper">
             <!--form-->
-            <section class="form">
-                <h1>The Invisible Hand</h1>
-                <input type="text" placeholder="Item" id="itemInput">
-                <input type="number" placeholder="Quantity" id="quantInput" pattern="/\d*" min=0>
-                <button onclick="newItem()">Add</button>
+            <h1>My Shopping List</h1>
+            <section class="form list">
+                <div class="item">
+                    <div class="nameQuantUnit">
+                        <input type="text" placeholder="New Item" id="itemInput" class="itemInput name">
+                        <input type="number" placeholder="Quantity" class="quantInput quant" id="quantInput" pattern="/\d*" min=0>
+                    </div>
+                    <i class="far fa-plus-square fa-2x delete" onclick="newItem()"></i>
+                    <!-- <button onclick="newItem()" class="delete">Add</button> -->
+                </div>
             </section>
             <!--shopping list-->
             <section>
@@ -33,11 +38,6 @@
             <section>
                 <h4 class="doneListButton" onclick="hideDoneList()">Done List</h4>
                 <div class="list doneList" id="doneListId"></div>
-            </section>
-
-            <section>
-                <h4>TEST SECTION</h4>
-                <div class="list doneList" id="testListId"></div>
             </section>
 
         </div>
